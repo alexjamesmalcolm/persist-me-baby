@@ -4,7 +4,7 @@ public class Message {
 
 	String text;
 
-	private Message(String text) {
+	public Message(String text) {
 		this.text = text;
 	}
 }
