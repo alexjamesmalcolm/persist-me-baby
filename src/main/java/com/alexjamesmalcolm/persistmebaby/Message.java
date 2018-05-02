@@ -7,4 +7,8 @@ public class Message {
 	public Message(String text) {
 		this.text = text;
 	}
+
+	public void updateText(String newText) {
+		text = newText;
+	}
 }
