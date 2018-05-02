@@ -28,4 +28,9 @@ public class RestController {
 		return message;
 	}
 
+	@RequestMapping(path = "/messages", method = RequestMethod.GET)
+	private Iterable<Message> receiveAGetRequestOnMessages() {
+		Iterable<Message> messages = messageRepo.findAll();
+		return messages;
+	}
 }
