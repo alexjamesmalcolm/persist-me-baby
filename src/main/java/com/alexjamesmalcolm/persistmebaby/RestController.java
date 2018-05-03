@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RestController {
 
 	@Resource
-	private CrudRepository<Message, Long> messageRepo;
+	private MessageRepository messageRepo;
 
 	@RequestMapping(path = "/messages", method = POST)
 	private Message receivePostRequestOnMessages(@RequestParam String text) {
