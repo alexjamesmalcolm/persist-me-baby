@@ -1,7 +1,13 @@
 package com.alexjamesmalcolm.persistmebaby;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Message {
 
+	@Id
+	long id;
 	String text;
 
 	public Message(String text) {
