@@ -17,4 +17,8 @@ public class Message {
 	public void updateText(String newText) {
 		text = newText;
 	}
+	
+	public String getText() {
+		return text;
+	}
 }
