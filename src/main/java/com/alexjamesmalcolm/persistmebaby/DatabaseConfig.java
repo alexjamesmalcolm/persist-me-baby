@@ -8,13 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-@Configuration
+//@Configuration
 public class DatabaseConfig {
 
-	@Bean
-	@Primary
-	@ConfigurationProperties(prefix = "spring.datasource")
+//	@Bean
+//	@Primary
+//	@ConfigurationProperties(prefix = "spring.datasource")
 	public DataSource dataSource() {
-		return DataSourceBuilder.create().build();
+		DataSourceBuilder builder = DataSourceBuilder.create();
+		return builder.build();
 	}
 }

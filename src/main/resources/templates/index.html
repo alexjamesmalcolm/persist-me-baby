@@ -3,18 +3,31 @@
 
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Home</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-	<script src="main.js"></script>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>No Fun Messages</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+	<script src="/js/main.js"></script>
 </head>
 
-<body>
+<body onload="initialize()">
 	<div class="container">
-		<div th:each="message : ${messages}">
-			<p th:text="${message.text}"/>
-		</div>
+		<header>
+			<h1>No Fun Messages</h1>
+			<h2>Fun Tolerance: Zero</h2>
+		</header>
+		<section class="message-form">
+			<input type="text" />
+			<button type="submit">Send</button>
+		</section>
+		<section class="messages">
+			<article class="message" th:each="message : ${messages}">
+				<p th:text="${message.text}" />
+			</article>
+		</section>
+		<footer>
+			<small>Made by Corperate Business©</small>
+		</footer>
 	</div>
 </body>
 

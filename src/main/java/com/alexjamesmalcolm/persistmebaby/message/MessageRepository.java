@@ -1,4 +1,4 @@
-package com.alexjamesmalcolm.persistmebaby;
+package com.alexjamesmalcolm.persistmebaby.message;
 
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,4 +1,4 @@
-package com.alexjamesmalcolm.persistmebaby;
+package com.alexjamesmalcolm.persistmebaby.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -7,19 +7,23 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import javax.annotation.Resource;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-public class RestController {
+import com.alexjamesmalcolm.persistmebaby.message.Message;
+import com.alexjamesmalcolm.persistmebaby.message.MessageRepository;
+
+@RestController
+public class MessageRestController {
 
 	@Resource
 	private MessageRepository messageRepo;
 
 	@RequestMapping(path = "/messages", method = POST)
 	private Message receivePostRequestOnMessages(@RequestParam String text) {
+		System.out.println(text);
 		Message message = new Message(text);
 		message = messageRepo.save(message);
 		return message;
