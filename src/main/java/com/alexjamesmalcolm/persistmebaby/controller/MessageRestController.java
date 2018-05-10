@@ -23,7 +23,6 @@ public class MessageRestController {
 
 	@RequestMapping(path = "/messages", method = POST)
 	private Message receivePostRequestOnMessages(@RequestParam String text) {
-		System.out.println(text);
 		Message message = new Message(text);
 		message = messageRepo.save(message);
 		return message;
