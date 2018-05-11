@@ -9,7 +9,6 @@ const initialize = () => {
             button.click();
         }
     });
-    // setInterval(function(){ alert("Hello"); }, 3000);
     setInterval(() => {
         updateMessages();
     }, 2000);
