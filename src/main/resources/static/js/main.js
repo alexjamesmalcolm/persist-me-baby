@@ -19,9 +19,14 @@ const sendMessage = (textBox) => {
     xhr.onreadystatechange = () => {
         if(xhr.readyState === 4 && xhr.status === 200) {
             const messages = document.querySelector("section.messages");
-            const response = JSON.parse(xhr.response);
-            const message = `<article class="message"><p>${response.text}</p></article>`;
-            messages.innerHTML += message;
+            const messageContent = JSON.parse(xhr.response).text;
+            // const message = `<article class="message"><p>${messageContent}</p></article>`;
+            const paragraph = document.createElement("p");
+            paragraph.innerText = messageContent;
+            const message = document.createElement("article");
+            message.appendChild(paragraph);
+            messages.appendChild(message);
+            // messages.innerHTML += message;
             messages.scrollTop = messages.scrollHeight;
         }
     };
