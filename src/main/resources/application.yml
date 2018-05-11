@@ -14,4 +14,4 @@
 
 spring:
     datasource:
-        url: postgres://akiswolepsuasw:99e5bcaf5ab52b62a0600d7fc384e3bca4ca62f11d2839235dc1aa035f173bb3@ec2-54-243-28-109.compute-1.amazonaws.com:5432/d18sseh8c36epr
+        url: jdbc:postgresql://akiswolepsuasw:99e5bcaf5ab52b62a0600d7fc384e3bca4ca62f11d2839235dc1aa035f173bb3@ec2-54-243-28-109.compute-1.amazonaws.com:5432/d18sseh8c36epr
