@@ -1,17 +1,11 @@
-# spring:
-#   jpa:
-#     database-platform: org.hibernate.dialect.PostgreSQLDialect
-#     database: POSTGRESQL
-#     show-sql: true
-#     hibernate:
-#       ddl-auto: create-drop
-#   datasource:
-#     platform: postgresql
-#     url: jdbc:postgresql://bwufsnrvwqbgxt:d8bf9fdffeb19d428a52761f884bd5bfe364279659096999201a4a7307796c26@ec2-107-20-249-68.compute-1.amazonaws.com:5432/d9hpnl9hngct5p
-#     username: bwufsnrvwqbgxt
-#     password: d8bf9fdffeb19d428a52761f884bd5bfe364279659096999201a4a7307796c26
-#     driverClassName: org.postgresql.Driver
-
 spring:
-    datasource:
-        url: jdbc:postgresql://akiswolepsuasw:99e5bcaf5ab52b62a0600d7fc384e3bca4ca62f11d2839235dc1aa035f173bb3@ec2-54-243-28-109.compute-1.amazonaws.com:5432/d18sseh8c36epr
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    platform: postgresql
+    url: jdbc:postgresql://akiswolepsuasw:99e5bcaf5ab52b62a0600d7fc384e3bca4ca62f11d2839235dc1aa035f173bb3@ec2-54-243-28-109.compute-1.amazonaws.com:5432/d18sseh8c36epr
+    driverClassName: org.postgresql.Driver
