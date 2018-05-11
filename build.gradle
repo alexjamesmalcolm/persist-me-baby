@@ -22,6 +22,7 @@ repositories {
 	mavenCentral()
 }
 
+// TODO If we're in testing environment, change environment variable for DATABASE_URL to test one
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
