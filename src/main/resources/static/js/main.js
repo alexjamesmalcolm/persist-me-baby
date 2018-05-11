@@ -19,14 +19,14 @@ const sendMessage = (textBox) => {
     xhr.onreadystatechange = () => {
         if(xhr.readyState === 4 && xhr.status === 200) {
             const messages = document.querySelector("section.messages");
-            const messageContent = JSON.parse(xhr.response).text;
-            // const message = `<article class="message"><p>${messageContent}</p></article>`;
-            const paragraph = document.createElement("p");
-            paragraph.innerText = messageContent;
-            const message = document.createElement("article");
-            message.appendChild(paragraph);
-            messages.appendChild(message);
-            // messages.innerHTML += message;
+            const messageContent = unsafe(JSON.parse(xhr.response).text);
+            const message = `<article class="message"><p>${messageContent}</p></article>`;
+            // const paragraph = document.createElement("p");
+            // paragraph.innerText = messageContent;
+            // const message = document.createElement("article");
+            // message.appendChild(paragraph);
+            // messages.appendChild(message);
+            messages.innerHTML += message;
             messages.scrollTop = messages.scrollHeight;
         }
     };
@@ -53,4 +53,13 @@ const updateMessages = () => {
     };
     xhr.open("GET", "/messages", true);
     xhr.send();
+};
+
+const escapeHtml = unsafe => {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 };
