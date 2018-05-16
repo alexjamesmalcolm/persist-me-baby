@@ -23,6 +23,9 @@ repositories {
 }
 
 // TODO If we're in testing environment, change environment variable for DATABASE_URL to test one
+test {
+	environment "JDBC_DATABASE_URL", "jdbc:h2:~/test"
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
@@ -31,6 +34,6 @@ dependencies {
 	compile('org.springframework.data:spring-data-rest-hal-browser')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('org.postgresql:postgresql')
-	// runtime('com.h2database:h2')
+	testRuntime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
