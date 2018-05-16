@@ -19,7 +19,7 @@ const sendMessage = (textBox) => {
     xhr.onreadystatechange = () => {
         if(xhr.readyState === 4 && xhr.status === 200) {
             const messages = document.querySelector("section.messages");
-            const messageContent = unsafe(JSON.parse(xhr.response).text);
+            const messageContent = escapeHtml(JSON.parse(xhr.response).text);
             const message = `<article class="message"><p>${messageContent}</p></article>`;
             // const paragraph = document.createElement("p");
             // paragraph.innerText = messageContent;
