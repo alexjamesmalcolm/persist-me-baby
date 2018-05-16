@@ -44,7 +44,7 @@ const updateMessages = () => {
             const response = JSON.parse(xhr.response);
             messages.innerHTML = "";
             for(let i = 0; i < response.length; i++) {
-                const text = response[i].text;
+                const text = escapeHtml(response[i].text);
                 const message = `<article class="message"><p>${text}</p></article>`;
                 messages.innerHTML += message;
             }
