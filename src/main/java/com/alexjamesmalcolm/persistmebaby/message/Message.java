@@ -11,7 +11,6 @@ public class Message {
 	@Id
 	@GeneratedValue
 	private long id;
-	@Lob
 	private String text;
 
 	public Message(String text) {
