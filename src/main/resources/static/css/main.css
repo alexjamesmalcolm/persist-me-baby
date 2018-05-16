@@ -31,7 +31,6 @@ section.message-form {
 section.messages {
     grid-row: 3;
     grid-column: 1/4;
-    height: 500px;
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
