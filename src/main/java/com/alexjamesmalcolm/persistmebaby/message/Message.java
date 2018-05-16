@@ -3,6 +3,7 @@ package com.alexjamesmalcolm.persistmebaby.message;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Message {
@@ -10,6 +11,7 @@ public class Message {
 	@Id
 	@GeneratedValue
 	long id;
+	@Lob
 	String text;
 
 	public Message(String text) {
