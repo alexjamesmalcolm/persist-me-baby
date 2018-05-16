@@ -21,11 +21,6 @@ const sendMessage = (textBox) => {
             const messages = document.querySelector("section.messages");
             const messageContent = escapeHtml(JSON.parse(xhr.response).text);
             const message = `<article class="message"><p>${messageContent}</p></article>`;
-            // const paragraph = document.createElement("p");
-            // paragraph.innerText = messageContent;
-            // const message = document.createElement("article");
-            // message.appendChild(paragraph);
-            // messages.appendChild(message);
             messages.innerHTML += message;
             messages.scrollTop = messages.scrollHeight;
         }
