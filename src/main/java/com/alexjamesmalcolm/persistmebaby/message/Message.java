@@ -10,9 +10,9 @@ public class Message {
 
 	@Id
 	@GeneratedValue
-	long id;
+	private long id;
 	@Lob
-	String text;
+	private String text;
 
 	public Message(String text) {
 		this.text = text;
