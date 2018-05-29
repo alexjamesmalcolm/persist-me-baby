@@ -1,9 +1,9 @@
 const initialize = () => {
     const button = document.querySelector("form.message input[type='submit']");
     const textBox = document.querySelector("form.message input[type='text']");
-    // button.addEventListener("click", () => {
-    //     sendMessage(textBox);
-    // });
+    button.addEventListener("click", () => {
+        sendMessage(textBox);
+    });
     textBox.addEventListener("keyup", () => {
         if (event.keyCode === 13) {
             button.click();
@@ -14,22 +14,25 @@ const initialize = () => {
     }, 2000);
 };
 
-// const sendMessage = (textBox) => {
-//     const xhr = new XMLHttpRequest();
-//     xhr.onreadystatechange = () => {
-//         if(xhr.readyState === 4 && xhr.status === 200) {
-//             const messages = document.querySelector("section.messages");
-//             const messageContent = escapeHtml(JSON.parse(xhr.response).text);
-//             const message = `<article class="message"><p>${messageContent}</p></article>`;
-//             messages.innerHTML += message;
-//             messages.scrollTop = messages.scrollHeight;
-//         }
-//     };
-//     const text = textBox.value;
-//     textBox.value = "";
-//     xhr.open("POST", `/messages?text=${text}`, true);
-//     xhr.send();
-// };
+const sendMessage = (textBox) => {
+    const xhr = new XMLHttpRequest();
+    const token = getMetaContent("name", "_csrf");
+    const header = getMetaContent("name", "_csrf_header");
+    xhr.setRequestHeader(header, token);
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4 && xhr.status === 200) {
+            const messages = document.querySelector("section.messages");
+            const messageContent = escapeHtml(JSON.parse(xhr.response).text);
+            const message = `<article class="message"><p>${messageContent}</p></article>`;
+            messages.innerHTML += message;
+            messages.scrollTop = messages.scrollHeight;
+        }
+    };
+    const text = textBox.value;
+    textBox.value = "";
+    xhr.open("POST", `/messages?text=${text}`, true);
+    xhr.send();
+};
 
 const updateMessages = () => {
     const xhr = new XMLHttpRequest();
@@ -58,3 +61,5 @@ const escapeHtml = unsafe => {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 };
+
+const getMetaContent = (property, name) => document.head.querySelector("["+property+"="+name+"]").content;
