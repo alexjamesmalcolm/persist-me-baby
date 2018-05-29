@@ -1,9 +1,9 @@
 const initialize = () => {
-    const button = document.querySelector("section.message-form button");
-    const textBox = document.querySelector("section.message-form input");
-    button.addEventListener("click", () => {
-        sendMessage(textBox);
-    });
+    const button = document.querySelector("form.message input[type='submit']");
+    const textBox = document.querySelector("form.message input[type='text']");
+    // button.addEventListener("click", () => {
+    //     sendMessage(textBox);
+    // });
     textBox.addEventListener("keyup", () => {
         if (event.keyCode === 13) {
             button.click();
@@ -14,22 +14,22 @@ const initialize = () => {
     }, 2000);
 };
 
-const sendMessage = (textBox) => {
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
-        if(xhr.readyState === 4 && xhr.status === 200) {
-            const messages = document.querySelector("section.messages");
-            const messageContent = escapeHtml(JSON.parse(xhr.response).text);
-            const message = `<article class="message"><p>${messageContent}</p></article>`;
-            messages.innerHTML += message;
-            messages.scrollTop = messages.scrollHeight;
-        }
-    };
-    const text = textBox.value;
-    textBox.value = "";
-    xhr.open("POST", `/messages?text=${text}`, true);
-    xhr.send();
-};
+// const sendMessage = (textBox) => {
+//     const xhr = new XMLHttpRequest();
+//     xhr.onreadystatechange = () => {
+//         if(xhr.readyState === 4 && xhr.status === 200) {
+//             const messages = document.querySelector("section.messages");
+//             const messageContent = escapeHtml(JSON.parse(xhr.response).text);
+//             const message = `<article class="message"><p>${messageContent}</p></article>`;
+//             messages.innerHTML += message;
+//             messages.scrollTop = messages.scrollHeight;
+//         }
+//     };
+//     const text = textBox.value;
+//     textBox.value = "";
+//     xhr.open("POST", `/messages?text=${text}`, true);
+//     xhr.send();
+// };
 
 const updateMessages = () => {
     const xhr = new XMLHttpRequest();

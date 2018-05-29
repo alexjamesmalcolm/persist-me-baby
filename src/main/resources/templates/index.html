@@ -16,10 +16,11 @@
 			<h1>No Fun Messages</h1>
 			<h2>Fun Tolerance: Zero</h2>
 		</header>
-		<section class="message-form">
+		<form action="#" th:action="@{/messages}" method="post" class="message">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			<input type="text" />
-			<button type="submit">Send</button>
-		</section>
+			<input type="submit" />
+		</form>
 		<section class="messages">
 			<article class="message" th:each="message : ${messages}">
 				<p th:text="${message.text}" />
