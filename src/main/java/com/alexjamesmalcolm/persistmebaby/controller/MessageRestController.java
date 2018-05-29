@@ -5,6 +5,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
+import java.security.Principal;
+
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +24,9 @@ public class MessageRestController {
 	private MessageRepository messageRepo;
 
 	@RequestMapping(path = "/messages", method = POST)
-	private Message receivePostRequestOnMessages(@RequestParam String text) {
-		Message message = new Message(text);
+	private Message receivePostRequestOnMessages(@RequestParam String text, Principal principal) {
+		System.out.println(principal);
+		Message message = new Message(text, principal);
 		message = messageRepo.save(message);
 		return message;
 	}
