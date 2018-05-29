@@ -23,7 +23,9 @@ repositories {
 }
 
 test {
-	environment "JDBC_DATABASE_URL", "jdbc:h2:~/test"
+	environment "JDBC_DATABASE_URL", DATABASE_URL
+	environment "CLIENT_ID", CLIENT_ID
+	environment "CLIENT_SECRET", CLIENT_SECRET
 }
 
 ext {
