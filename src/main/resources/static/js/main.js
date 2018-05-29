@@ -1,6 +1,6 @@
 const initialize = () => {
-    const button = document.querySelector("section.message-form button");
-    const textBox = document.querySelector("section.message-form input");
+    const button = document.querySelector("section.message-form button[type='submit']");
+    const textBox = document.querySelector("section.message-form input[type='text']");
     button.addEventListener("click", () => {
         sendMessage(textBox);
     });
@@ -28,6 +28,9 @@ const sendMessage = (textBox) => {
     const text = textBox.value;
     textBox.value = "";
     xhr.open("POST", `/messages?text=${text}`, true);
+    const token = getMetaContent("name", "_csrf");
+    const header = getMetaContent("name", "_csrf_header");
+    xhr.setRequestHeader(header, token);
     xhr.send();
 };
 
@@ -58,3 +61,5 @@ const escapeHtml = unsafe => {
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 };
+
+const getMetaContent = (property, name) => document.head.querySelector("["+property+"="+name+"]").content;
