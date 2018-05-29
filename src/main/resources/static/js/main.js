@@ -16,9 +16,6 @@ const initialize = () => {
 
 const sendMessage = (textBox) => {
     const xhr = new XMLHttpRequest();
-    const token = getMetaContent("name", "_csrf");
-    const header = getMetaContent("name", "_csrf_header");
-    xhr.setRequestHeader(header, token);
     xhr.onreadystatechange = () => {
         if(xhr.readyState === 4 && xhr.status === 200) {
             const messages = document.querySelector("section.messages");
@@ -31,6 +28,9 @@ const sendMessage = (textBox) => {
     const text = textBox.value;
     textBox.value = "";
     xhr.open("POST", `/messages?text=${text}`, true);
+    const token = getMetaContent("name", "_csrf");
+    const header = getMetaContent("name", "_csrf_header");
+    xhr.setRequestHeader(header, token);
     xhr.send();
 };
 
