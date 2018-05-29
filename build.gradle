@@ -23,9 +23,15 @@ repositories {
 }
 
 test {
-	environment "JDBC_DATABASE_URL", DATABASE_URL
-	environment "CLIENT_ID", CLIENT_ID
-	environment "CLIENT_SECRET", CLIENT_SECRET
+	if(DATABASE_URL != null) {
+		environment "JDBC_DATABASE_URL", DATABASE_URL
+	}
+	if(CLIENT_ID != null) {
+		environment "CLIENT_ID", CLIENT_ID
+	}
+	if(CLIENT_SECRET != null) {
+		environment "CLIENT_SECRET", CLIENT_SECRET
+	}
 }
 
 ext {
