@@ -39,6 +39,15 @@ const updateMessages = () => {
 	}, "GET", "/messages");
 };
 
+const getUserInfo = () => {
+    let result;
+    request(response => {
+        console.log(response);
+        result = response;
+    }, "GET", "https://www.googleapis.com/userinfo/v2/me");
+    return result;
+};
+
 const request = (callback, method, url) => {
 	const xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = () => {
