@@ -23,13 +23,13 @@ repositories {
 }
 
 test {
-	if(System.env["JDBC_DATABASE_URL"] != null) {
+	if(System.env["JDBC_DATABASE_URL"] == null) {
 		environment "JDBC_DATABASE_URL", DATABASE_URL
 	}
-	if(System.env["CLIENT_ID"] != null) {
+	if(System.env["CLIENT_ID"] == null) {
 		environment "CLIENT_ID", CLIENT_ID
 	}
-	if(System.env["CLIENT_SECRET"] != null) {
+	if(System.env["CLIENT_SECRET"] == null) {
 		environment "CLIENT_SECRET", CLIENT_SECRET
 	}
 }
