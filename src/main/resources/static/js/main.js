@@ -1,6 +1,6 @@
 const initialize = () => {
-    const button = document.querySelector("form.message input[type='submit']");
-    const textBox = document.querySelector("form.message input[type='text']");
+    const button = document.querySelector("section.message-form button[type='submit']");
+    const textBox = document.querySelector("section.message-form input[type='text']");
     button.addEventListener("click", () => {
         sendMessage(textBox);
     });
