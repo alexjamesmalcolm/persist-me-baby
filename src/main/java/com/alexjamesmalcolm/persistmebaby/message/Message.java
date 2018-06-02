@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.alexjamesmalcolm.persistmebaby.CustomUser;
+import com.alexjamesmalcolm.persistmebaby.customuser.CustomUser;
 
 @Entity
 public class Message {

@@ -1,4 +1,4 @@
-package com.alexjamesmalcolm.persistmebaby;
+package com.alexjamesmalcolm.persistmebaby.customuser;
 
 import org.springframework.data.repository.CrudRepository;
 
