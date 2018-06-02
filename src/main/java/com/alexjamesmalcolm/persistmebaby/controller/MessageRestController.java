@@ -6,6 +6,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -33,8 +34,13 @@ public class MessageRestController {
 
 	@RequestMapping(path = "/messages/{messageId}", method = GET)
 	private Message receiveGetRequestOnAMessage(@PathVariable long messageId) {
-		Message message = messageRepo.findOne(messageId);
-		return message;
+		Optional<Message> optionalMessage = messageRepo.findById(messageId);
+		if(optionalMessage.isPresent()) {
+			Message message = optionalMessage.get();
+			return message;
+		} else {
+			return null;
+		}
 	}
 
 	@RequestMapping(path = "/messages", method = GET)
@@ -45,14 +51,19 @@ public class MessageRestController {
 	
 	@RequestMapping(path = "/messages/{messageId}", method = PUT)
 	private Message receivePutRequestOnAMessage(@PathVariable long messageId, @RequestParam String text) {
-		Message message = messageRepo.findOne(messageId);
-		message.updateText(text);
-		message = messageRepo.save(message);
-		return message;
+		Optional<Message> optionalMessage = messageRepo.findById(messageId);
+		if(optionalMessage.isPresent()) {
+			Message message = optionalMessage.get();
+			message.updateText(text);
+			messageRepo.save(message);
+			return message;
+		} else {
+			return null;
+		}
 	}
 	
 	@RequestMapping(path = "/messages/{messageId}", method = DELETE)
 	private void receiveDeleteRequestOnAMessage(@PathVariable long messageId) {
-		messageRepo.delete(messageId);
+		messageRepo.deleteById(messageId);
 	}
 }
