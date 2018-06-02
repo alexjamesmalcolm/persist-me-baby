@@ -1,10 +1,11 @@
 package com.alexjamesmalcolm.persistmebaby.message;
 
-import java.security.Principal;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.alexjamesmalcolm.persistmebaby.controller.CustomUser;
 
 @Entity
 public class Message {
@@ -13,9 +14,12 @@ public class Message {
 	@GeneratedValue
 	private long id;
 	private String text;
+	@ManyToOne
+	private CustomUser user;
 
-	public Message(String text, Principal principal) {
+	public Message(String text, CustomUser user) {
 		this.text = text;
+		this.user = user;
 	}
 	
 	public Message() {}
