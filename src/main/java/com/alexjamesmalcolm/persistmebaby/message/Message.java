@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.alexjamesmalcolm.persistmebaby.controller.CustomUser;
+import com.alexjamesmalcolm.persistmebaby.CustomUser;
 
 @Entity
 public class Message {
@@ -22,7 +22,8 @@ public class Message {
 		this.user = user;
 	}
 	
-	public Message() {}
+	@SuppressWarnings("unused")
+	private Message() {}
 
 	public void updateText(String newText) {
 		text = newText;
