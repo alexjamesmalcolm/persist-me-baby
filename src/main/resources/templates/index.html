@@ -24,7 +24,8 @@
 		</section>
 		<section class="messages">
 			<article class="message" th:each="message : ${messages}">
-				<p th:text="${message.text}" />
+				<p class="name" th:text="${message.user.fullName}"/>
+				<p class="content" th:text="${message.text}" />
 			</article>
 		</section>
 		<footer>
