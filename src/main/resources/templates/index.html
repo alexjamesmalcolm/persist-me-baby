@@ -24,7 +24,7 @@
 		</section>
 		<section class="messages">
 			<article class="message" th:each="message : ${messages}">
-				<p class="name" th:text="${message.user.fullName}"/>
+				<p class="name" th:text="${message.getCustomUser().getFullName()}"/>
 				<p class="content" th:text="${message.text}" />
 			</article>
 		</section>
