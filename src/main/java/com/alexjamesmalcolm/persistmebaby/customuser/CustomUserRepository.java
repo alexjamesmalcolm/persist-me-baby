@@ -1,7 +1,9 @@
 package com.alexjamesmalcolm.persistmebaby.customuser;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 
 public interface CustomUserRepository extends CrudRepository<CustomUser, Long> {
-	CustomUser findByGoogleName(String googleName);
+	Optional<CustomUser> findByGoogleName(String googleName);
 }

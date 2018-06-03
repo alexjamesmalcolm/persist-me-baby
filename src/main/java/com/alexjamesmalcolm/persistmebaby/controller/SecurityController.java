@@ -3,6 +3,7 @@ package com.alexjamesmalcolm.persistmebaby.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.annotation.Resource;
 
@@ -30,10 +31,13 @@ public class SecurityController {
 	}
 	
 	@RequestMapping(value = "/user", method = GET)
-	public CustomUser currentUser(Authentication auth) {
+	public Object currentUser(Authentication auth) {
 		String name = auth.getName();
-		CustomUser user = userRepo.findByGoogleName(name);
-		return user;
+		Optional<CustomUser> user = userRepo.findByGoogleName(name);
+		if(user.isPresent()) {
+			return user.get();
+		}
+		return "Cannot find user by name: " + name;
 	}
 	
 	@RequestMapping(value = "/name", method = GET)
