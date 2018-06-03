@@ -36,4 +36,9 @@ public class SecurityController {
 		return user;
 	}
 	
+	@RequestMapping(value = "/name", method = GET)
+	public String currentName(Principal principal) {
+		return principal.getName();
+	}
+	
 }
