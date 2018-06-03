@@ -32,4 +32,8 @@ public class Message {
 	public String getText() {
 		return text;
 	}
+	
+	public CustomUser getCustomUser() {
+		return user;
+	}
 }
