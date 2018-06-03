@@ -3,11 +3,13 @@ package com.alexjamesmalcolm.persistmebaby.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.security.Principal;
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Resource;
 
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +45,21 @@ public class SecurityController {
 	@RequestMapping(value = "/name", method = GET)
 	public String currentName(Principal principal) {
 		return principal.getName();
+	}
+	
+	@RequestMapping(value = "/auth-details", method = GET)
+	public Object currentAuthDetails(Authentication auth) {
+		return auth.getDetails();
+	}
+	
+	@RequestMapping(value = "/auth-principle", method = GET)
+	public Object currentAuthPrinciple(Authentication auth) {
+		return auth.getPrincipal();
+	}
+	
+	@RequestMapping(value = "/auth-authorities", method = GET)
+	public Collection<? extends GrantedAuthority> currentAuthorities(Authentication auth) {
+		return auth.getAuthorities();
 	}
 	
 }
