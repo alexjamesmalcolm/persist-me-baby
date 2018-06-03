@@ -91,4 +91,20 @@ public class MessageRestController {
 	private void receiveDeleteRequestOnAMessage(@PathVariable long messageId) {
 		messageRepo.deleteById(messageId);
 	}
+	
+	@RequestMapping(path = "/users", method = GET)
+	private Iterable<CustomUser> receiveGetRequestOnUsers() {
+		return userRepo.findAll();
+	}
+	
+	@RequestMapping(path = "/users/{userId}", method = GET)
+	private CustomUser receiveGetRequestOnAUser(@PathVariable long userId) {
+		Optional<CustomUser> potentialUser = userRepo.findById(userId);
+		if(potentialUser.isPresent()) {
+			CustomUser user = potentialUser.get();
+			return user;
+		} else {
+			return null;
+		}
+	}
 }
