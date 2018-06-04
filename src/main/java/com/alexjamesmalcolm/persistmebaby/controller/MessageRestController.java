@@ -47,8 +47,8 @@ public class MessageRestController {
 			CustomUser user = new CustomUser(name);
 			user.setGoogleName(name);
 			userRepo.save(user);
-			entityManager.clear();
 			entityManager.flush();
+			entityManager.clear();
 			optionalUser = userRepo.findByGoogleName(name);
 			user = optionalUser.get();
 			Message message = new Message(text, user);
