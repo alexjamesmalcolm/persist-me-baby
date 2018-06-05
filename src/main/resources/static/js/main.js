@@ -32,9 +32,7 @@ const sendMessage = (textBox, messages) => {
 
 const updateMessages = messages => {
 	request(response => {
-		for(let i = 0; i < messages.length; i++) {
-			messages.pop();
-		}
+		messages.length = 0;
 		for(let i = 0; i < response.length; i++) {
 			messages.push(response[i]);
 		}
