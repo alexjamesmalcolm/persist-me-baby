@@ -36,7 +36,7 @@ public class MessageRestController {
 
 	@RequestMapping(path = "/messages", method = POST)
 	@Transactional
-	private Message receivePostRequestOnMessages(@RequestParam String text, Authentication auth) {
+	public Message receivePostRequestOnMessages(@RequestParam String text, Authentication auth) {
 		String name = auth.getName();
 		Optional<CustomUser> optionalUser = userRepo.findByGoogleName(name);
 		if(optionalUser.isPresent()) {
@@ -58,7 +58,7 @@ public class MessageRestController {
 	}
 
 	@RequestMapping(path = "/messages/{messageId}", method = GET)
-	private Message receiveGetRequestOnAMessage(@PathVariable long messageId) {
+	public Message receiveGetRequestOnAMessage(@PathVariable long messageId) {
 		Optional<Message> optionalMessage = messageRepo.findById(messageId);
 		if(optionalMessage.isPresent()) {
 			Message message = optionalMessage.get();
@@ -69,13 +69,13 @@ public class MessageRestController {
 	}
 
 	@RequestMapping(path = "/messages", method = GET)
-	private Iterable<Message> receiveGetRequestOnMessages() {
+	public Iterable<Message> receiveGetRequestOnMessages() {
 		Iterable<Message> messages = messageRepo.findAll();
 		return messages;
 	}
 	
 	@RequestMapping(path = "/messages/{messageId}", method = PUT)
-	private Message receivePutRequestOnAMessage(@PathVariable long messageId, @RequestParam String text) {
+	public Message receivePutRequestOnAMessage(@PathVariable long messageId, @RequestParam String text) {
 		Optional<Message> optionalMessage = messageRepo.findById(messageId);
 		if(optionalMessage.isPresent()) {
 			Message message = optionalMessage.get();
@@ -88,17 +88,17 @@ public class MessageRestController {
 	}
 	
 	@RequestMapping(path = "/messages/{messageId}", method = DELETE)
-	private void receiveDeleteRequestOnAMessage(@PathVariable long messageId) {
+	public void receiveDeleteRequestOnAMessage(@PathVariable long messageId) {
 		messageRepo.deleteById(messageId);
 	}
 	
 	@RequestMapping(path = "/users", method = GET)
-	private Iterable<CustomUser> receiveGetRequestOnUsers() {
+	public Iterable<CustomUser> receiveGetRequestOnUsers() {
 		return userRepo.findAll();
 	}
 	
 	@RequestMapping(path = "/users/{userId}", method = GET)
-	private CustomUser receiveGetRequestOnAUser(@PathVariable long userId) {
+	public CustomUser receiveGetRequestOnAUser(@PathVariable long userId) {
 		Optional<CustomUser> potentialUser = userRepo.findById(userId);
 		if(potentialUser.isPresent()) {
 			CustomUser user = potentialUser.get();
