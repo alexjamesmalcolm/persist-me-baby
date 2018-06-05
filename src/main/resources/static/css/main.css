@@ -28,7 +28,7 @@ section.message-form {
     justify-content: center;
 }
 
-section.messages {
+#messages {
     grid-row: 3;
     grid-column: 1/4;
     overflow-y: scroll;
@@ -50,4 +50,8 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+[v-cloak="true"] {
+    display: none;
 }
