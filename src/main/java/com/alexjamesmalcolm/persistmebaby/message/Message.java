@@ -38,4 +38,8 @@ public class Message {
 	public CustomUser getCustomUser() {
 		return user;
 	}
+	
+	public String getCustomUserName() {
+		return getCustomUser().getFullName();
+	}
 }
