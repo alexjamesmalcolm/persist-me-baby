@@ -3,6 +3,7 @@
 !gradle/wrapper/gradle-wrapper.jar
 .env
 gradle.properties
+*.db
 
 ### Eclipse ###
 bin/
