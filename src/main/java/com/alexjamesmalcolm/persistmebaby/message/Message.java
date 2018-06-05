@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.alexjamesmalcolm.persistmebaby.customuser.CustomUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Message {
@@ -33,6 +34,7 @@ public class Message {
 		return text;
 	}
 	
+	@JsonIgnore
 	public CustomUser getCustomUser() {
 		return user;
 	}
