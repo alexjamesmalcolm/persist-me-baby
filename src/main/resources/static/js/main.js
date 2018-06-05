@@ -1,41 +1,43 @@
 const initialize = () => {
 	const button = document.querySelector("section.message-form button[type='submit']");
 	const textBox = document.querySelector("section.message-form input[type='text']");
+	const messages = [];
 	button.addEventListener("click", () => {
-		sendMessage(textBox);
+		sendMessage(textBox, messages);
 	});
 	textBox.addEventListener("keyup", () => {
 		if (event.keyCode === 13) {
 			button.click();
 		}
 	});
+	const $messageSection = new Vue({
+		el: "#messages",
+		data: {
+			messages: messages
+		}
+	});
+	updateMessages(messages);
 	setInterval(() => {
-		updateMessages();
+		updateMessages(messages);
 	}, 2000);
 };
 
-const sendMessage = textBox => {
+const sendMessage = (textBox, messages) => {
 	const text = textBox.value;
 	textBox.value = "";
-	request((response) => {
-		const messages = document.querySelector("section.messages");
-		const messageContent = escapeHtml(response.text);
-		const message = `<article class="message"><p>${messageContent}</p></article>`;
-		messages.innerHTML += message;
-		messages.scrollTop = messages.scrollHeight;
+	request(response => {
+		messages.push(response);
 	}, "POST", `/messages?text=${text}`);
 };
 
-const updateMessages = () => {
+const updateMessages = messages => {
 	request(response => {
-		const messages = document.querySelector("section.messages");
-		messages.innerHTML = "";
-		for (let i = 0; i < response.length; i++) {
-			const text = escapeHtml(response[i].text);
-			const message = `<article class="message"><p>${text}</p></article>`;
-			messages.innerHTML += message;
+		for(let i = 0; i < messages.length; i++) {
+			messages.pop();
 		}
-		messages.scrollTop = messages.scrollHeight;
+		for(let i = 0; i < response.length; i++) {
+			messages.push(response[i]);
+		}
 	}, "GET", "/messages");
 };
 

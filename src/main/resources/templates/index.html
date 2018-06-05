@@ -23,10 +23,15 @@
 			<input type="text" />
 			<button type="submit">Send</button>
 		</section>
-		<section class="messages">
-			<article class="message" th:each="message : ${messages}">
-				<p class="name" th:text="${message.getCustomUser().getFullName()}"/>
-				<p class="content" th:text="${message.text}" />
+		<section id="messages">
+			<article v-cloak="true" class="message" v-for="message in messages">
+				<p>
+					<span>User:</span>
+					<span>{{ message.customUserName }}</span>
+				</p>
+				<p>
+					{{ message.text }}
+				</p>
 			</article>
 		</section>
 		<footer>
