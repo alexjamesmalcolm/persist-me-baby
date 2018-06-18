@@ -42,6 +42,12 @@ public class SecurityController {
 		OAuth2User user = token.getPrincipal();
 		return user.getAttributes();
 	}
+	
+	@RequestMapping(value = "/token-map", method = GET)
+	public Map<String, Object> currentToken(OAuth2AuthenticationToken token) {
+		OAuth2User user = token.getPrincipal();
+		return user.getAttributes();
+	}
 
 	@RequestMapping(value = "/auth", method = GET)
 	public Authentication currentAuth(Authentication auth) {
