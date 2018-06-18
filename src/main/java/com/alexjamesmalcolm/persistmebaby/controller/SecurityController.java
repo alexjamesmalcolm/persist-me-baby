@@ -28,6 +28,11 @@ public class SecurityController {
 		return principal;
 	}
 	
+	@RequestMapping(value = "/principal-string", method = GET)
+	public String currentPrincipalString(Principal principal) {
+		return principal.toString();
+	}
+	
 	@RequestMapping(value = "/auth", method = GET)
 	public Authentication currentAuth(Authentication auth) {
 		return auth;
