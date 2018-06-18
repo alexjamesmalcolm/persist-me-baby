@@ -37,19 +37,19 @@ public class MessageRestController {
 	@RequestMapping(path = "/messages", method = POST)
 	@Transactional
 	public Message receivePostRequestOnMessages(@RequestParam String text, Authentication auth) {
-		String name = auth.getName();
-		Optional<CustomUser> optionalUser = userRepo.findByGoogleName(name);
+		String googleName = auth.getName();
+		Optional<CustomUser> optionalUser = userRepo.findByGoogleName(googleName);
 		if(optionalUser.isPresent()) {
 			Message message = new Message(text, optionalUser.get());
 			message = messageRepo.save(message);
 			return message;
 		} else {
-			CustomUser user = new CustomUser(name);
-			user.setGoogleName(name);
+			CustomUser user = new CustomUser(googleName);
+			user.setGoogleName(googleName);
 			userRepo.save(user);
 			entityManager.flush();
 			entityManager.clear();
-			optionalUser = userRepo.findByGoogleName(name);
+			optionalUser = userRepo.findByGoogleName(googleName);
 			user = optionalUser.get();
 			Message message = new Message(text, user);
 			message = messageRepo.save(message);
