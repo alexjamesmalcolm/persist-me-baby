@@ -47,7 +47,7 @@ public class SecurityController {
 	public Object currentUser(Authentication auth) {
 		String name = auth.getName();
 		Optional<CustomUser> user = userRepo.findByGoogleName(name);
-		if(user.isPresent()) {
+		if (user.isPresent()) {
 			return user.get();
 		}
 		return "Cannot find user by name: " + name;
