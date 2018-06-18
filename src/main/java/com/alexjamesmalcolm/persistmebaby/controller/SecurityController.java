@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -66,5 +67,11 @@ public class SecurityController {
 	@RequestMapping(value = "/authentication-principal", method = GET)
 	public CustomUser authenticationPrincipal(@AuthenticationPrincipal CustomUser user) {
 		return user;
+	}
+	
+	@RequestMapping(value = "/user-details-username", method = GET)
+	public String userDetailsUsername(Authentication auth) {
+		UserDetails userDetails = (UserDetails) auth.getPrincipal();
+		return userDetails.getUsername();
 	}
 }
