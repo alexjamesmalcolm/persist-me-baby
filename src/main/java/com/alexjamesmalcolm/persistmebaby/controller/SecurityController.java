@@ -38,6 +38,11 @@ public class SecurityController {
 		return auth;
 	}
 	
+	@RequestMapping(value = "/auth-string", method = GET)
+	public String currentAuthString(Authentication auth) {
+		return auth.toString();
+	}
+	
 	@RequestMapping(value = "/user", method = GET)
 	public Object currentUser(Authentication auth) {
 		String name = auth.getName();
