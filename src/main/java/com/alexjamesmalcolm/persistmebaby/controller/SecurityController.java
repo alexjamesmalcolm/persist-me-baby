@@ -8,12 +8,9 @@ import java.util.Optional;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,9 +19,6 @@ import com.alexjamesmalcolm.persistmebaby.customuser.CustomUserRepository;
 
 @RestController
 public class SecurityController {
-	
-	@Autowired
-	private UserDetailsService userDetailsService;
 	
 	@Resource
 	private CustomUserRepository userRepo;
@@ -74,9 +68,4 @@ public class SecurityController {
 		return user;
 	}
 	
-	@RequestMapping(value = "/user-details-username", method = GET)
-	public String userDetailsUsername(Authentication auth) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(auth.getName());
-		return userDetails.getUsername();
-	}
 }
