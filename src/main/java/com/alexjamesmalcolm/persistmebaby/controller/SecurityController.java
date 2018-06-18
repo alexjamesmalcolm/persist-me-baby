@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,7 +23,7 @@ import com.alexjamesmalcolm.persistmebaby.customuser.CustomUserRepository;
 @RestController
 public class SecurityController {
 	
-	@Resource
+	@Autowired
 	private UserDetailsService userDetailsService;
 	
 	@Resource
