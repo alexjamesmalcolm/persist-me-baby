@@ -63,7 +63,7 @@ public class SecurityController {
 		return auth.getAuthorities();
 	}
 	
-	@RequestMapping("/authentication-principal")
+	@RequestMapping(value = "/authentication-principal", method = GET)
 	public CustomUser authenticationPrincipal(@AuthenticationPrincipal CustomUser user) {
 		return user;
 	}
