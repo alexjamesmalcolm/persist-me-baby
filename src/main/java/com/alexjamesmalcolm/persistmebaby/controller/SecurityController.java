@@ -53,7 +53,7 @@ public class SecurityController {
 		return auth.getDetails();
 	}
 	
-	@RequestMapping(value = "/auth-principle", method = GET)
+	@RequestMapping(value = "/auth-principal", method = GET)
 	public Object currentAuthPrinciple(Authentication auth) {
 		return auth.getPrincipal();
 	}
