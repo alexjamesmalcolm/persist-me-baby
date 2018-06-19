@@ -26,14 +26,14 @@ const sendMessage = (textBox, messages) => {
 	const text = textBox.value;
 	textBox.value = "";
 	request(response => {
-		messages.push(response);
+		messages.unshift(response);
 	}, "POST", `/messages?text=${text}`);
 };
 
 const updateMessages = messages => {
 	request(response => {
 		messages.length = 0;
-		for(let i = 0; i < response.length; i++) {
+		for(let i = response.length - 1; i >= 0; i--) {
 			messages.push(response[i]);
 		}
 	}, "GET", "/messages");
