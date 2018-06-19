@@ -44,6 +44,10 @@ article.message {
     margin: 0.5rem;
 }
 
+.name {
+    font-weight: bold;
+}
+
 footer {
     grid-row: 4;
     grid-column: 1/4;

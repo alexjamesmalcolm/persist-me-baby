@@ -25,9 +25,9 @@
 		</section>
 		<section id="messages">
 			<article v-cloak="true" class="message" v-for="message in messages">
-				<p>
-					<span>User:</span>
+				<p class="name">
 					<span>{{ message.customUserName }}</span>
+					<span>:</span>
 				</p>
 				<p>
 					{{ message.text }}
