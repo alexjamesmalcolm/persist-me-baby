@@ -5,13 +5,15 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
-import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,15 +38,18 @@ public class MessageRestController {
 
 	@RequestMapping(path = "/messages", method = POST)
 	@Transactional
-	public Message receivePostRequestOnMessages(@RequestParam String text, Authentication auth) {
-		String googleName = auth.getName();
+	public Message receivePostRequestOnMessages(@RequestParam String text, OAuth2AuthenticationToken token) {
+		OAuth2User authenticatedUser = token.getPrincipal();
+		Map<String, Object> principalAttributes = authenticatedUser.getAttributes();
+		String googleName = (String) principalAttributes.get("sub");
 		Optional<CustomUser> optionalUser = userRepo.findByGoogleName(googleName);
 		if(optionalUser.isPresent()) {
 			Message message = new Message(text, optionalUser.get());
 			message = messageRepo.save(message);
 			return message;
 		} else {
-			CustomUser user = new CustomUser(googleName);
+			String fullName = (String) principalAttributes.get("name");
+			CustomUser user = new CustomUser(fullName);
 			user.setGoogleName(googleName);
 			userRepo.save(user);
 			entityManager.flush();
