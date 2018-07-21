@@ -50,7 +50,7 @@ public class SecurityController {
 	}
 	
 	@RequestMapping(value = "/oauth2user-map", method = GET)
-	public Map<String, Object> currentOAuth2UserMap(OAuth2User user) {
+	public Map<String, Object> currentOAuth2UserMap(@AuthenticationPrincipal OAuth2User user) {
 		return user.getAttributes();
 	}
 
