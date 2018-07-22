@@ -53,6 +53,11 @@ public class SecurityController {
 	public Map<String, Object> currentOAuth2UserMap(@AuthenticationPrincipal OAuth2User user) {
 		return user.getAttributes();
 	}
+	
+	@RequestMapping(path = "/oauth2user-name", method = GET)
+	public String currentOAuth2UserName(@AuthenticationPrincipal OAuth2User user) {
+		return user.getName();
+	}
 
 	@RequestMapping(value = "/auth", method = GET)
 	public Authentication currentAuth(Authentication auth) {
