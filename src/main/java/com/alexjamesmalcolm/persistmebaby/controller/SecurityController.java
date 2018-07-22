@@ -42,21 +42,27 @@ public class SecurityController {
 		OAuth2User user = token.getPrincipal();
 		return user.getAttributes();
 	}
-	
+
 	@RequestMapping(value = "/token-map", method = GET)
 	public Map<String, Object> currentToken(OAuth2AuthenticationToken token) {
 		OAuth2User user = token.getPrincipal();
 		return user.getAttributes();
 	}
-	
+
 	@RequestMapping(value = "/oauth2user-map", method = GET)
 	public Map<String, Object> currentOAuth2UserMap(@AuthenticationPrincipal OAuth2User user) {
 		return user.getAttributes();
 	}
-	
+
 	@RequestMapping(path = "/oauth2user-name", method = GET)
 	public String currentOAuth2UserName(@AuthenticationPrincipal OAuth2User user) {
 		return user.getName();
+	}
+
+	@RequestMapping(path = "/oauth2user-authorities", method = GET)
+	public Collection<? extends GrantedAuthority> currentOauth2UserAuthorities(
+			@AuthenticationPrincipal OAuth2User user) {
+		return user.getAuthorities();
 	}
 
 	@RequestMapping(value = "/auth", method = GET)
