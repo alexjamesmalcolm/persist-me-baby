@@ -31,7 +31,7 @@ public class MessageRestController {
 
 	@RequestMapping(path = "/messages/{messageId}", method = GET)
 	private Message receiveGetRequestOnAMessage(@PathVariable long messageId) {
-		Message message = messageRepo.findById(messageId).get();
+		Message message = messageRepo.findOne(messageId);
 		return message;
 	}
 
@@ -43,7 +43,7 @@ public class MessageRestController {
 	
 	@RequestMapping(path = "/messages/{messageId}", method = PUT)
 	private Message receivePutRequestOnAMessage(@PathVariable long messageId, @RequestParam String text) {
-		Message message = messageRepo.findById(messageId).get();
+		Message message = messageRepo.findOne(messageId);
 		message.updateText(text);
 		message = messageRepo.save(message);
 		return message;
@@ -51,6 +51,6 @@ public class MessageRestController {
 	
 	@RequestMapping(path = "/messages/{messageId}", method = DELETE)
 	private void receiveDeleteRequestOnAMessage(@PathVariable long messageId) {
-		messageRepo.deleteById(messageId);
+		messageRepo.delete(messageId);
 	}
 }
